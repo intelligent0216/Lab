@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+#define n 10
+
+int max(int *arr)
+{
+  int max = arr[0];
+  for (int q = 0; q < n; q++)
+  {
+    if (max < arr[q])
+    {
+      max = arr[q];
+    }
+  }
+  return max;
+}
+
+int min(int *arr)
+{
+  int min = arr[0];
+  for (int q = 0; q < n; q++)
+  {
+    if (min > arr[q])
+    {
+      min = arr[q];
+    }
+  }
+  return min;
+}
+
+double mean(int *arr)
+{
+  double mean=0.;
+  for (int q = 0; q < n; q++)
+  {
+    mean += arr[q];
+  }
+  return mean/n;
+}
+
+int median(int *arr)
+{
+  int median   = arr[0];  
+  double mean2 = mean(arr);
+  
+  for (int q = 0; q < n; q++)
+  {
+    if (fabs(arr[q] - mean2) < fabs(median - mean2))
+    {
+      median = arr[q];
+    }
+  }
+  return median;
+}
+
+int main(void) {
+  FILE *f;
+  int arr[10];
+  int *s_arr = arr;
+
+  f = fopen("file.txt", "r");
+  for (int q = 0; q < n; q++)
+  {
+    fscanf(f, "%d", &arr[q]);
+  }
+  fclose(f);
+
+  f = fopen("file.txt", "w");
+  fprintf(f, "%d ", max(s_arr));
+  fprintf(f, "%d ", min(s_arr));
+  fprintf(f, "%.2lf ", mean(s_arr));
+  fprintf(f, "%.d ", median(s_arr));
+  fclose(f);
+  
+  return 0;
+}

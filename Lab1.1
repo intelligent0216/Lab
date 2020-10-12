@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+  for (int q = 1; q < 101; q++) 
+  {
+    if (q % 15 == 0) 
+      printf("FizzBuzz ");
+    else if (q % 5 == 0) 
+      printf("Buzz ");
+    else if (q % 3 == 0)
+      printf("Fizz ");
+    else 
+      printf("%d ", q);
+  }
+
+  return 0;
+}

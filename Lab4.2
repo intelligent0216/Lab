@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <malloc.h>
+
+typedef struct Even
+{
+  int number;
+  int even;
+
+} even1;
+
+
+int main(void) {
+  int n;
+  scanf("%d", &n);
+  even1 *a = malloc(n * sizeof (even1));
+  
+  for (int q = 0; q < n; q++)
+  {
+    scanf("%d", &a[q].number);
+    a[q].even = (a[q].number+1) % 2;
+  }
+
+  for (int q = 0; q < n; q++)
+  {
+    printf("%d %d\n", a[q].number, a[q].even);
+  }
+  
+  return 0;
+}

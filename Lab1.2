@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int is_simple(int number)
+{ 
+  int x = 1;
+  for (int q = 2; q <= (int)sqrt(number); q++)
+  {
+    if (number % q == 0) 
+      x = 0;
+      break;
+  }
+  return x;
+}
+
+int main(void)
+{
+  printf("%d", is_simple(12));
+  return 0;
+}

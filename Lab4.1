@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <malloc.h>
+
+int main(void) {
+  int n;
+  int *a;
+
+  scanf("%d", &n);
+  a = (int*)malloc(n * sizeof(int));
+  for (int q = 0; q < n; q++)
+  {
+    scanf("%d", &a[q]);
+  }
+  for (int q = 0; q < n; q++)
+  {
+    printf("%d ", a[q]);
+  }
+  
+  return 0;
+}

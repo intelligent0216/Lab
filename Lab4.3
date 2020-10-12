@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <malloc.h>
+
+int* get_simples(int count)
+{
+  int arr[count];
+  int *arr2 = NULL;
+  int number = 1;
+
+  for (int q = 0; q < count; q++) 
+  {
+    arr[q] = 0;
+  }
+
+  for (int q = 2; q*q < count; q++)
+    if (arr[q] == 0)
+      for (int w = q*q; w < count; w += q)
+        arr[w] = 1;
+
+  for (int q = 2; q < count; q++)
+  {
+    if (arr[q] == 0) {
+      arr2 = (int*)realloc(arr2, (number) * sizeof(int));
+      arr2[number - 1] = q;
+      number++;
+    }
+  }
+  for (int q = 0; q < number - 1; q++)
+    printf("%d ", arr2[q]);
+  printf("\n");
+
+  return arr2;
+}
+
+
+int main(void) {
+  int count;
+  scanf("%d", &count);
+  get_simples(count);
+  
+  
+  return 0;
+}

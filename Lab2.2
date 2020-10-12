@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+long get_fibbonachi_via_cycle(int number)
+{
+  static long massiv[] = {1,1};
+  if (massiv[number] == 0){
+    massiv[number] = get_fibbonachi_via_cycle(number-1)+get_fibbonachi_via_cycle(number-2);
+  }
+  if (number == 1 || number == 2) 
+    return 1;
+  else 
+    return massiv[number];
+}
+
+int main(void)
+{
+  int number;
+  scanf("%d", &number);
+  printf("%ld", get_fibbonachi_via_cycle(number));
+  return 0;
+}

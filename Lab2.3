@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <string.h>
+
+char IntToStr(int number)
+{
+  if ( number >=0 && number <=9 ) 
+  {
+    return number + '0';
+  }
+  else if ( number >= 10 && number <= 36 )
+  {
+    return number - 10 +'A';
+  }
+  else
+  {
+    return ' ';
+  }
+}
+
+void power(int number, int source, int target)
+{
+  int  sum = 0;
+  char massiv[20];
+  int  len_massiv=0; 
+
+  while (number > 0) 
+  { 
+    static int power = 1; 
+    sum    += number % 10 * power; 
+    power  *= source;
+    number /= 10; 
+  }
+
+  while (sum > 0) 
+  {
+    static int q = 0;
+    massiv[q++] = IntToStr(sum % target);
+    sum /= target;
+  }
+
+  int len = strlen(massiv);
+  for (int q = 0; q < len / 2; q++)
+  {
+    massiv[q]          += massiv[len - 1 - q];
+    massiv[len - 1 - q] = massiv[q] - massiv[len - q - 1];
+    massiv[q]          -= massiv[len - 1 - q];
+  }
+
+  printf("%s", massiv);
+  return;
+}
+
+int main(void)
+{
+  int number, source, target;
+
+  scanf("%d %d %d", &number, &source, &target);
+  power(number, source, target);
+}

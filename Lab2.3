@@ -22,13 +22,17 @@ void power(int number, int source, int target)
   int  sum = 0;
   char massiv[20];
   int  len_massiv=0; 
-
+  
+  for (int q = 0; q < 20; q++)
+    massiv[q] = 0;
+  
   while (number > 0) 
   { 
     static int power = 1; 
     sum    += number % 10 * power; 
     power  *= source;
     number /= 10; 
+    if (number <= 0) power = 1;
   }
 
   while (sum > 0) 
@@ -36,6 +40,7 @@ void power(int number, int source, int target)
     static int q = 0;
     massiv[q++] = IntToStr(sum % target);
     sum /= target;
+    if (sum <= 0) q = 0;
   }
 
   int len = strlen(massiv);
